@@ -6,10 +6,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DataService } from './data.service';
+import { QueriesComponent } from './Queries/queries.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    QueriesComponent
   ],
   imports: [
     BrowserModule,

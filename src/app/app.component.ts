@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { DataService } from 'src/app/data.service';
 import { ZipCodeDetails } from './Models/zipcode-details';
 
@@ -7,21 +7,29 @@ import { ZipCodeDetails } from './Models/zipcode-details';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'FestTechnologiesFront';
 
-  constructor(private dataService: DataService) {
-    this.zipcodeDetails = new ZipCodeDetails();
-  }
-  ngOnInit(): void {
-    console.log('init');
-    this.load();
-  }
-  
-  zipcodeDetails: ZipCodeDetails;
+  @Input() zipCode: string = "";
 
-  load() {
-    this.dataService.getZipCodeDetails('95032').subscribe((data: ZipCodeDetails) => this.zipcodeDetails = data);
-    console.log('download ' + this.zipcodeDetails);
+  constructor(private dataService: DataService) {}
+  
+  zipcodeDetails: ZipCodeDetails | undefined;
+
+  async getDetails(){
+    if(this.zipCode != ""){
+      try{
+        await this.loadDetails(this.zipCode);
+      }catch(e){
+        this.zipcodeDetails = new ZipCodeDetails();
+        this.zipcodeDetails.errorMessage = e.message;
+        this.zipcodeDetails.statusCode = e.status;
+      }
+    }
+  }
+
+  async loadDetails(zip: string) {
+    this.zipcodeDetails = undefined;
+    this.dataService.getZipCodeDetails(zip).subscribe((data: ZipCodeDetails) => this.zipcodeDetails = data);
   }
 }
