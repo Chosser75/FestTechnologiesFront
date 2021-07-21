@@ -1,6 +1,6 @@
 export class ZipCodeQuery {
     constructor(
-        public int?: number,
+        public id?: number,
         public zipCode?: string,
         public temp?: number,
         public cityName?: string,

@@ -3,7 +3,7 @@ import { DataService } from 'src/app/data.service';
 import { ZipCodeDetails } from '../Models/zipcode-details';
 
 @Component({
-  selector: 'app-zipcode',
+  selector: 'zipcode',
   templateUrl: './zipcode.component.html',
   styleUrls: ['./zipcode.component.css']
 })

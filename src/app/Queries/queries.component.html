@@ -1,1 +1,24 @@
-<p>queries works!</p>
+<div style="width: 80%; margin: auto;">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <td>Id</td>
+                <td>ZipCode</td>
+                <td>Temperature</td>
+                <td>City</td>
+                <td>Timezone</td>
+                <td>Date</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let q of zipCodeQuery">
+                <td>{{q?.id}}</td>
+                <td>{{q?.zipCode}}</td>
+                <td>{{q?.temp}}</td>
+                <td>{{q?.cityName}}</td>
+                <td>{{q?.timeZoneName}}</td>
+                <td>{{q?.requested}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

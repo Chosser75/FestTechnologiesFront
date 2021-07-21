@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../data.service';
+import { ZipCodeQuery } from '../Models/zipcode-qiery';
 
 @Component({
   selector: 'queries',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QueriesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dataService: DataService) {}
 
   ngOnInit(): void {
+    this.loadRequests(1, 100);
   }
 
+  zipCodeQuery: ZipCodeQuery[] | undefined;
+
+
+  loadRequests(page: number, rowsPerPage: number) {
+    this.dataService.getCityTemperatureQueries(page, rowsPerPage).subscribe((data: ZipCodeQuery[]) => this.zipCodeQuery = data);
+  }
 }

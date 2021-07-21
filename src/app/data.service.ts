@@ -28,8 +28,8 @@ export class DataService {
         );
     }
 
-    getCityTemperatureQueries(page: number, rowsPerPage: number): Observable<ZipCodeQuery> {
-        return this.http.get<ZipCodeQuery>(this.url + '/GetCityTemperatureQueries/' + page + '/' + rowsPerPage).pipe(
+    getCityTemperatureQueries(page: number, rowsPerPage: number): Observable<ZipCodeQuery[]> {
+        return this.http.get<ZipCodeQuery[]>(this.url + '/GetCityTemperatureQueries/' + page + '/' + rowsPerPage).pipe(
             catchError(error => {
                 let errorMsg: string = "";
                 if (error.error instanceof ErrorEvent) {
