@@ -7,11 +7,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DataService } from './data.service';
 import { QueriesComponent } from './Queries/queries.component';
+import { ZipcodeComponent } from './Zipcode/zipcode.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    QueriesComponent
+    QueriesComponent,
+    ZipcodeComponent
   ],
   imports: [
     BrowserModule,
