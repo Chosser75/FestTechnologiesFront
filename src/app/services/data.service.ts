@@ -1,16 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
-import { ZipCodeDetails } from './Models/zipcode-details';
-import { ZipCodeQuery } from './Models/zipcode-qiery';
+import { ZipCodeDetails } from '../Models/zipcode-details';
+import { ZipCodeQuery } from '../Models/zipcode-qiery';
 import { Observable, throwError } from 'rxjs';
+import { AppConfigService } from './app-config.service';
 
 @Injectable()
 export class DataService {
 
-    private url = "https://localhost:44369/api/v1/Weather";
+    private url: string;
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private appConfigService: AppConfigService) {
+        this.url = this.appConfigService.apiBaseUrl;
     }
 
     getZipCodeDetails(zipCode: string): Observable<ZipCodeDetails> {
@@ -44,10 +46,7 @@ export class DataService {
     }
 
     private getServerErrorMessage(error: HttpErrorResponse): string {
-        switch (error.status) {
-            case 404: {
-                return `Not Found: ${error.message}`;
-            }
+        switch (error.status) {            
             case 403: {
                 return `Access Denied: ${error.message}`;
             }
