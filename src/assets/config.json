@@ -1,3 +1,4 @@
 {
-    "apiBaseUrl": "https://localhost:44369/api/v1/Weather"
+    "apiBaseUrl": "https://localhost:44369/api/v1/Weather",
+    "rowsPerPage": 5
 }

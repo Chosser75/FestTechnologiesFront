@@ -45,6 +45,10 @@ export class DataService {
         );
     }
 
+    async getQueriesTotalPages(rowsPerPage: number): Promise<number> {
+        return await this.http.get<number>(this.url + '/GetQueriesTotalPages/' + rowsPerPage).toPromise();
+    }
+
     private getServerErrorMessage(error: HttpErrorResponse): string {
         switch (error.status) {            
             case 403: {
